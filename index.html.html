@@ -1,0 +1,1552 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>บทเรียนคาบแรก | รู้จักวิชาสีน้ำ ม.3</title>
+  <style>
+    :root {
+      --ink: #14212c;
+      --muted: #5d6a76;
+      --paper: #fffdf8;
+      --line: #dfe6ea;
+      --blue: #1b65a6;
+      --cyan: #30a7c6;
+      --rose: #c75b72;
+      --gold: #d79a2b;
+      --green: #2d8b71;
+      --soft: #f2f7f6;
+      --shadow: 0 18px 50px rgba(20, 33, 44, .11);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Tahoma, "Noto Sans Thai", "Segoe UI", sans-serif;
+      line-height: 1.72;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px clamp(18px, 4vw, 58px);
+      background: rgba(255, 253, 248, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 1.25rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    nav a {
+      padding: 7px 10px;
+      border-radius: 7px;
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+      background: #edf3f4;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .75fr);
+      align-items: center;
+      gap: 34px;
+      padding: clamp(76px, 12vw, 138px) clamp(20px, 5vw, 76px) clamp(42px, 7vw, 84px);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(48, 167, 198, .28), transparent 28%),
+        radial-gradient(circle at 76% 22%, rgba(199, 91, 114, .22), transparent 27%),
+        radial-gradient(circle at 55% 82%, rgba(45, 139, 113, .2), transparent 30%),
+        linear-gradient(135deg, #ffffff, #f4f7ef);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(20, 33, 44, .045) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(20, 33, 44, .045) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, #000, transparent 85%);
+    }
+
+    .hero-copy,
+    .hero-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 18px;
+      max-width: 860px;
+      font-size: clamp(2.6rem, 7vw, 6.2rem);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 1.16;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.28rem;
+      line-height: 1.35;
+    }
+
+    .lead {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 900;
+    }
+
+    .primary {
+      color: #fff;
+      background: var(--blue);
+      box-shadow: 0 12px 28px rgba(27, 101, 166, .25);
+    }
+
+    .ghost {
+      border: 1px solid #bfd0d8;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    .hero-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .82);
+      box-shadow: var(--shadow);
+    }
+
+    .wash-demo {
+      height: 260px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 22% 35%, rgba(54, 151, 207, .78), transparent 27%),
+        radial-gradient(circle at 62% 48%, rgba(217, 112, 142, .58), transparent 30%),
+        radial-gradient(circle at 72% 74%, rgba(76, 175, 136, .6), transparent 29%),
+        linear-gradient(135deg, #fff7d7, #eff8ff);
+      filter: saturate(1.04);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.25rem;
+    }
+
+    .band {
+      padding: clamp(54px, 8vw, 94px) clamp(20px, 5vw, 76px);
+    }
+
+    .soft {
+      background: var(--soft);
+    }
+
+    .section-head {
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+
+    .section-head p:not(.kicker) {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card,
+    .timeline,
+    .question-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--rose);
+      font-weight: 900;
+    }
+
+    .timeline {
+      overflow: hidden;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 18px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .time-row:last-child {
+      border-bottom: 0;
+    }
+
+    .time {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .note {
+      padding: 16px 18px;
+      border-left: 5px solid var(--gold);
+      background: #fff9e9;
+      font-weight: 700;
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+    }
+
+    .bullet-list li {
+      list-style: none;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbfc;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .paint-sample {
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .sample-water {
+      background:
+        radial-gradient(circle at 25% 36%, rgba(255, 255, 255, .45), transparent 25%),
+        linear-gradient(135deg, #68bce0, #9ee2c7);
+    }
+
+    .sample-poster {
+      background: linear-gradient(135deg, #f2495c 0 34%, #ffd238 34% 67%, #1b65a6 67%);
+    }
+
+    .sample-acrylic {
+      background:
+        repeating-linear-gradient(135deg, #1b65a6 0 18px, #f2667d 18px 36px, #f5c43b 36px 54px);
+    }
+
+    .example-table,
+    .equipment-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .example-table div,
+    .equipment-list div {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 12px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdff;
+    }
+
+    .example-table strong,
+    .equipment-list strong {
+      color: var(--blue);
+    }
+
+    .example-table span,
+    .equipment-list span {
+      color: var(--muted);
+    }
+
+    .image-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .image-examples figure {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .image-examples img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #edf3f4;
+    }
+
+    .image-examples figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .image-examples a {
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .question-panel {
+      padding: 24px;
+    }
+
+    .spot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .spot-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .spot-card img {
+      width: 100%;
+      height: 235px;
+      object-fit: cover;
+      background: #edf3f4;
+    }
+
+    .spot-body {
+      padding: 16px;
+    }
+
+    .spot-body h3 {
+      margin-bottom: 6px;
+    }
+
+    .spot-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .choice-btn,
+    .answer-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .choice-btn:hover,
+    .answer-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .choice-btn.correct {
+      border-color: #7bd39d;
+      color: #087336;
+      background: #eafff1;
+    }
+
+    .choice-btn.wrong {
+      border-color: #f3a0ad;
+      color: #be123c;
+      background: #fff1f3;
+    }
+
+    .spot-result {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 13px;
+      border-radius: 8px;
+      color: var(--ink);
+      background: #f8fbfc;
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .spot-result.show {
+      display: block;
+    }
+
+    .spot-source {
+      display: inline-flex;
+      margin-top: 10px;
+      color: var(--blue);
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    img[data-zoomable] {
+      cursor: zoom-in;
+    }
+
+    .image-zoom {
+      width: 100vw;
+      max-width: none;
+      height: 100vh;
+      max-height: none;
+      margin: 0;
+      padding: clamp(18px, 4vw, 56px);
+      border: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .image-zoom[open] {
+      display: grid;
+      place-items: center;
+    }
+
+    .image-zoom::backdrop {
+      background: rgba(5, 9, 13, .9);
+      backdrop-filter: blur(8px);
+    }
+
+    .image-zoom img {
+      width: min(96vw, 1280px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .5);
+      animation: zoomImageIn .28s ease both;
+    }
+
+    .zoom-close {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 8px;
+      color: #fff;
+      background: rgba(255, 255, 255, .12);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    @keyframes zoomImageIn {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .questions {
+      display: grid;
+      gap: 12px;
+      counter-reset: q;
+    }
+
+    .questions li {
+      position: relative;
+      padding: 15px 16px 15px 58px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdff;
+      list-style: none;
+      font-weight: 700;
+    }
+
+    .questions li::before {
+      counter-increment: q;
+      content: counter(q);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--green);
+      font-weight: 900;
+    }
+
+    footer {
+      padding: 26px clamp(20px, 5vw, 76px);
+      color: #d5dde3;
+      background: #111b24;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Modern visual refresh */
+    body {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(251, 250, 245, .96)),
+        repeating-linear-gradient(90deg, rgba(27, 101, 166, .035) 0 1px, transparent 1px 68px),
+        var(--paper);
+    }
+
+    .topbar {
+      background: rgba(251, 250, 245, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand-mark {
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 12px 24px rgba(27, 101, 166, .22);
+    }
+
+    nav a {
+      border-radius: 999px;
+      transition: color .18s ease, background .18s ease, transform .18s ease;
+    }
+
+    nav a:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background:
+        linear-gradient(110deg, rgba(251, 250, 245, .98) 0 46%, rgba(229, 246, 246, .82) 46% 100%),
+        radial-gradient(circle at 16% 22%, rgba(48, 167, 198, .22), transparent 31%),
+        radial-gradient(circle at 78% 30%, rgba(199, 91, 114, .18), transparent 29%),
+        linear-gradient(135deg, #ffffff, #eef6f3);
+    }
+
+    .hero::before {
+      background-size: 46px 46px;
+      mask-image: linear-gradient(180deg, #000, transparent 78%);
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border: 1px solid rgba(27, 101, 166, .18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .68);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 5rem, 5.4rem);
+    }
+
+    h2 {
+      font-size: clamp(2.15rem, 3rem, 3.25rem);
+    }
+
+    .lead,
+    .section-head p:not(.kicker) {
+      color: #465866;
+    }
+
+    .button {
+      border-radius: 10px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--blue), #0b7e91);
+    }
+
+    .ghost {
+      background: rgba(255, 255, 255, .76);
+      box-shadow: 0 10px 28px rgba(20, 33, 44, .08);
+    }
+
+    .hero-card {
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .76);
+      backdrop-filter: blur(14px);
+    }
+
+    .wash-demo {
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45);
+    }
+
+    .soft {
+      background: linear-gradient(180deg, rgba(238, 246, 243, .98), rgba(245, 249, 247, .98));
+    }
+
+    .card,
+    .timeline,
+    .question-panel,
+    .spot-card {
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: 0 18px 46px rgba(20, 33, 44, .1);
+    }
+
+    .card,
+    .spot-card,
+    .image-examples figure {
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .card:hover,
+    .spot-card:hover,
+    .image-examples figure:hover {
+      transform: translateY(-4px);
+      border-color: rgba(27, 101, 166, .38);
+      box-shadow: 0 24px 58px rgba(20, 33, 44, .14);
+    }
+
+    .number,
+    .questions li::before {
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--rose), #d87a57);
+    }
+
+    .note {
+      border-radius: 0 12px 12px 0;
+      background: linear-gradient(90deg, #fff6df, #fffdf8);
+    }
+
+    .bullet-list li,
+    .example-table div,
+    .equipment-list div,
+    .questions li,
+    .spot-result {
+      border-radius: 12px;
+      background: #fbfdff;
+    }
+
+    .paint-sample,
+    .image-examples figure,
+    .image-examples img,
+    .spot-card img,
+    .choice-btn,
+    .answer-btn,
+    .image-zoom img,
+    .zoom-close {
+      border-radius: 12px;
+    }
+
+    .image-examples img,
+    .spot-card img {
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .choice-btn,
+    .answer-btn {
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+    }
+
+    .choice-btn:hover,
+    .answer-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background:
+        linear-gradient(135deg, #101a23, #122b36);
+    }
+
+    /* Stripe-inspired neumorphic refresh */
+    body {
+      background: #f4f7fb;
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, .72);
+      border-bottom: 1px solid rgba(255, 255, 255, .55);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+    }
+
+    .brand {
+      color: #16223a;
+    }
+
+    nav a {
+      color: #27364f;
+    }
+
+    nav a:hover {
+      color: #07162e;
+      background: rgba(255, 255, 255, .68);
+      box-shadow:
+        8px 8px 18px rgba(77, 96, 126, .12),
+        -8px -8px 18px rgba(255, 255, 255, .82);
+    }
+
+    .hero {
+      min-height: 92vh;
+      color: #111827;
+      background:
+        radial-gradient(circle at 18% 24%, rgba(104, 202, 238, .9), transparent 30%),
+        radial-gradient(circle at 72% 18%, rgba(255, 113, 145, .88), transparent 31%),
+        radial-gradient(circle at 88% 48%, rgba(255, 190, 99, .8), transparent 30%),
+        linear-gradient(135deg, #b014e6 0%, #8b5cf6 30%, #75d7ef 58%, #ff7b54 100%);
+    }
+
+    .hero::before {
+      opacity: .22;
+      background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, .32) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255, 255, 255, .26) 1px, transparent 1px);
+      mask-image: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -4vw;
+      right: -4vw;
+      bottom: -1px;
+      height: 28vh;
+      background: #f4f7fb;
+      clip-path: polygon(0 44%, 100% 0, 100% 100%, 0 100%);
+      z-index: 0;
+    }
+
+    .hero-copy {
+      max-width: 850px;
+      padding-top: 14px;
+    }
+
+    .hero-copy,
+    .hero-card {
+      z-index: 2;
+    }
+
+    .hero .kicker {
+      color: #ffffff;
+      background: rgba(31, 41, 55, .24);
+      border-color: rgba(255, 255, 255, .25);
+      box-shadow:
+        inset 1px 1px 1px rgba(255, 255, 255, .22),
+        12px 12px 30px rgba(54, 27, 86, .18);
+    }
+
+    h1 {
+      max-width: 720px;
+      color: #140f35;
+      font-size: clamp(3.7rem, 8vw, 7.7rem);
+      line-height: .92;
+      font-weight: 900;
+    }
+
+    .hero .lead {
+      max-width: 690px;
+      color: #31435b;
+      font-size: 1.18rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, .56);
+      border: 1px solid rgba(255, 255, 255, .65);
+      border-radius: 22px;
+      padding: 18px 20px;
+      box-shadow:
+        16px 16px 36px rgba(76, 88, 116, .13),
+        -14px -14px 32px rgba(255, 255, 255, .42);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+    }
+
+    .button {
+      border-radius: 999px;
+      min-height: 52px;
+      padding-inline: 22px;
+    }
+
+    .primary {
+      background: #082844;
+      box-shadow:
+        10px 14px 26px rgba(8, 40, 68, .24),
+        inset 1px 1px 1px rgba(255, 255, 255, .18);
+    }
+
+    .ghost {
+      border-color: rgba(255, 255, 255, .7);
+      background: rgba(255, 255, 255, .72);
+      box-shadow:
+        10px 10px 24px rgba(76, 88, 116, .13),
+        -10px -10px 24px rgba(255, 255, 255, .55);
+    }
+
+    .hero-card {
+      align-self: center;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, .86);
+      background: rgba(255, 255, 255, .86);
+      box-shadow:
+        30px 34px 65px rgba(47, 62, 92, .22),
+        -18px -18px 40px rgba(255, 255, 255, .35),
+        inset 1px 1px 0 rgba(255, 255, 255, .9);
+      transform: translateY(38px);
+    }
+
+    .wash-demo {
+      border-radius: 26px;
+      border: 0;
+      background:
+        radial-gradient(circle at 22% 35%, rgba(65, 187, 235, .82), transparent 29%),
+        radial-gradient(circle at 58% 44%, rgba(255, 105, 167, .58), transparent 30%),
+        radial-gradient(circle at 75% 72%, rgba(88, 207, 161, .62), transparent 29%),
+        linear-gradient(135deg, #fff6c9, #e8f9ff);
+      box-shadow:
+        inset 12px 12px 28px rgba(37, 73, 97, .12),
+        inset -14px -14px 32px rgba(255, 255, 255, .85);
+    }
+
+    .band {
+      background: #f4f7fb;
+    }
+
+    .soft {
+      background: #eef3f8;
+    }
+
+    .section-head {
+      max-width: 980px;
+    }
+
+    .section-head .kicker {
+      color: #145f9c;
+      border-color: rgba(20, 95, 156, .12);
+      background: rgba(255, 255, 255, .7);
+      box-shadow:
+        8px 8px 18px rgba(71, 91, 120, .08),
+        -8px -8px 18px rgba(255, 255, 255, .88);
+    }
+
+    h2 {
+      color: #111b32;
+      font-size: clamp(2.4rem, 4.4vw, 4.2rem);
+      line-height: 1.02;
+    }
+
+    .grid-2,
+    .grid-3,
+    .spot-grid {
+      gap: 22px;
+    }
+
+    .card,
+    .question-panel,
+    .spot-card,
+    .image-examples figure {
+      border: 1px solid rgba(255, 255, 255, .85);
+      border-radius: 28px;
+      background: #f8fbff;
+      box-shadow:
+        18px 18px 38px rgba(108, 124, 147, .18),
+        -18px -18px 38px rgba(255, 255, 255, .86);
+    }
+
+    .card:hover,
+    .spot-card:hover,
+    .image-examples figure:hover {
+      border-color: rgba(255, 255, 255, .95);
+      box-shadow:
+        24px 24px 48px rgba(96, 112, 136, .22),
+        -20px -20px 44px rgba(255, 255, 255, .9);
+    }
+
+    .card {
+      padding: 26px;
+    }
+
+    .number,
+    .questions li::before {
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed, #20a8bc);
+      box-shadow:
+        8px 8px 18px rgba(83, 104, 132, .18),
+        -8px -8px 18px rgba(255, 255, 255, .8);
+    }
+
+    .note {
+      border: 0;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fff7df, #fffefd);
+      box-shadow:
+        inset 8px 8px 18px rgba(177, 141, 77, .08),
+        inset -10px -10px 20px rgba(255, 255, 255, .8);
+    }
+
+    .bullet-list li,
+    .example-table div,
+    .equipment-list div,
+    .questions li,
+    .spot-result {
+      border: 1px solid rgba(255, 255, 255, .76);
+      border-radius: 18px;
+      background: #f6faff;
+      box-shadow:
+        inset 5px 5px 12px rgba(121, 139, 163, .08),
+        inset -6px -6px 14px rgba(255, 255, 255, .9);
+    }
+
+    .paint-sample {
+      border-radius: 24px;
+      min-height: 200px;
+      box-shadow:
+        12px 12px 26px rgba(96, 112, 136, .16),
+        -12px -12px 26px rgba(255, 255, 255, .76);
+    }
+
+    .image-examples figure {
+      overflow: hidden;
+    }
+
+    .image-examples img,
+    .spot-card img {
+      border-radius: 24px 24px 0 0;
+      filter: saturate(1.06) contrast(1.03);
+    }
+
+    .spot-card img {
+      height: 250px;
+    }
+
+    .choice-btn,
+    .answer-btn {
+      border: 1px solid rgba(255, 255, 255, .8);
+      border-radius: 999px;
+      background: #f8fbff;
+      box-shadow:
+        7px 7px 14px rgba(108, 124, 147, .16),
+        -7px -7px 14px rgba(255, 255, 255, .88);
+    }
+
+    .choice-btn:hover,
+    .answer-btn:hover {
+      background: #ffffff;
+    }
+
+    .choice-btn.correct {
+      box-shadow:
+        inset 5px 5px 12px rgba(8, 115, 54, .08),
+        inset -5px -5px 12px rgba(255, 255, 255, .82);
+    }
+
+    .choice-btn.wrong {
+      box-shadow:
+        inset 5px 5px 12px rgba(190, 18, 60, .08),
+        inset -5px -5px 12px rgba(255, 255, 255, .82);
+    }
+
+    .image-zoom img {
+      border-radius: 26px;
+    }
+
+    .zoom-close {
+      border-radius: 999px;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #0d1728, #102b36);
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .grid-2,
+      .grid-3,
+      .compare {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .time-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .example-table div,
+      .equipment-list div {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="brand-mark">ส</span>
+      <span>Watercolor Studio M.3</span>
+    </a>
+    <nav aria-label="เมนูบทเรียน">
+      <a href="#goals">เป้าหมาย</a>
+      <a href="#content">เนื้อหา</a>
+      <a href="#spot">จับผิดภาพ</a>
+      <a href="#activity">กิจกรรมท้ายคาบ</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="kicker">คาบแรก / ชั้นมัธยมศึกษาปีที่ 3</p>
+        <h1>รู้จักวิชาสีน้ำ</h1>
+        <p class="lead">
+          บทเรียนเริ่มต้นสำหรับนักเรียนที่ยังไม่มีอุปกรณ์จริง เน้นให้เข้าใจธรรมชาติของสีน้ำ
+          เห็นภาพรวมของรายวิชา รู้จักอุปกรณ์พื้นฐาน และเตรียมตัวสำหรับการลงมือปฏิบัติในคาบต่อไป
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#content">เปิดเนื้อหาบทเรียน</a>
+          <a class="button ghost" href="#activity">ดูคำถามท้ายคาบ</a>
+        </div>
+      </div>
+      <aside class="hero-card reveal">
+        <div class="wash-demo" aria-hidden="true"></div>
+        <strong>ใจความสำคัญของวันนี้</strong>
+        <p>
+          สีน้ำเป็นสีที่ใช้น้ำเป็นตัวกลาง มีลักษณะโปร่งใส เบา ซึม และควบคุมได้ด้วยปริมาณน้ำ
+          ยิ่งเข้าใจน้ำมากเท่าไร งานสีน้ำก็ยิ่งควบคุมได้มากขึ้น
+        </p>
+      </aside>
+    </section>
+
+    <section class="band soft" id="goals">
+      <div class="section-head reveal">
+        <p class="kicker">Learning Goals</p>
+        <h2>เป้าหมายการเรียนรู้ในคาบแรก</h2>
+        <p>คาบนี้ยังไม่ต้องลงสีจริง แต่นักเรียนควรออกจากห้องไปพร้อมภาพรวมว่าเราจะเรียนอะไร และต้องเตรียมตัวอย่างไร</p>
+      </div>
+      <div class="grid-3">
+        <article class="card reveal">
+          <span class="number">1</span>
+          <h3>อธิบายความหมายของสีน้ำได้</h3>
+          <p>เข้าใจว่าสีน้ำคือวัสดุระบายสีที่ใช้ผงสีกับตัวประสาน เมื่อนำมาใช้จะผสมน้ำเพื่อควบคุมความเข้มอ่อน</p>
+        </article>
+        <article class="card reveal">
+          <span class="number">2</span>
+          <h3>บอกลักษณะเด่นของสีน้ำได้</h3>
+          <p>สังเกตคำสำคัญ เช่น โปร่งใส เบา ซึม แห้งเร็ว ทับซ้อนได้ แต่แก้ไขยากกว่าสีบางชนิด</p>
+        </article>
+        <article class="card reveal">
+          <span class="number">3</span>
+          <h3>เตรียมอุปกรณ์พื้นฐานได้ถูกต้อง</h3>
+          <p>รู้ว่าคาบปฏิบัติควรมีสีน้ำ พู่กัน กระดาษ จานสี ภาชนะใส่น้ำ กระดาษทิชชู และดินสอร่างภาพ</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="band" id="content">
+      <div class="section-head reveal">
+        <p class="kicker">Core Content</p>
+        <h2>เนื้อหาสำหรับบรรยาย</h2>
+        <p>ครูสามารถใช้ส่วนนี้เป็นแกนพูดหน้าชั้น โดยค่อย ๆ ชวนให้นักเรียนคิดจากภาพจำและประสบการณ์ที่เคยเห็น</p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card reveal">
+          <h3>1. อธิบายว่าสีน้ำคืออะไร</h3>
+          <p>
+            สีน้ำคือสีชนิดหนึ่งที่ใช้ “น้ำ” เป็นตัวช่วยละลายและพาสีไปบนกระดาษ จุดเด่นคือมีความใส
+            เมื่อระบายบาง ๆ แสงจากพื้นกระดาษจะสะท้อนกลับขึ้นมา ทำให้ภาพดูสว่าง เบา และนุ่มนวล
+            ต่างจากสีทึบที่มักปิดพื้นผิวเดิมมากกว่า
+          </p>
+          <p>
+            การเรียนสีน้ำจึงไม่ใช่แค่การเลือกสีสวย ๆ แต่เป็นการเรียนรู้ความสัมพันธ์ระหว่างสี น้ำ กระดาษ
+            พู่กัน และเวลา เช่น ถ้ากระดาษเปียกมาก สีจะกระจาย ถ้ากระดาษแห้ง สีจะคม ถ้าน้ำมากสีจะอ่อน
+            ถ้าน้ำน้อยสีจะเข้มขึ้น
+          </p>
+          <div class="note">
+            ตัวอย่างสำหรับอธิบาย: ถ้าเราหยดสีน้ำเงินลงบนกระดาษที่เปียก สีจะค่อย ๆ ฟุ้งออกเหมือนหมอกหรือเมฆ
+            แต่ถ้าหยดบนกระดาษแห้ง ขอบสีจะชัดกว่า เหมาะกับการวาดเส้นหรือรายละเอียด
+          </div>
+          <div class="image-examples">
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Winslow_Homer_-_Woman_with_Flower.jpg" alt="ตัวอย่างงานสีน้ำของ Winslow Homer">
+              <figcaption>ตัวอย่างงานสีน้ำที่ใช้ความโปร่งและพื้นที่ขาวช่วยสร้างแสง <a href="https://commons.wikimedia.org/wiki/File:Winslow_Homer_-_Woman_with_Flower.jpg" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Watercolour_landscape_painting_of_Port_Simpson%2C_British_Columbia_%2812817394725%29.jpg" alt="ตัวอย่างภาพภูมิทัศน์สีน้ำ">
+              <figcaption>ภาพภูมิทัศน์สีน้ำ เห็นการไล่น้ำหนักและบรรยากาศเบา ๆ <a href="https://commons.wikimedia.org/wiki/File:Watercolour_landscape_painting_of_Port_Simpson,_British_Columbia_(12817394725).jpg" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>น้ำมาก:</strong> สีอ่อน โปร่ง ฟุ้ง เหมาะกับท้องฟ้า พื้นหลัง หรือแสงนุ่ม ๆ</li>
+            <li><strong>น้ำน้อย:</strong> สีเข้ม ควบคุมง่ายกว่า เหมาะกับเงา เส้นขอบ หรือจุดเด่นของภาพ</li>
+            <li><strong>กระดาษขาว:</strong> ทำหน้าที่เหมือนแสงในภาพ เพราะสีน้ำมักไม่ใช้สีขาวทับเหมือนสีโปสเตอร์</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3>2. เสน่ห์ของสีน้ำ</h3>
+          <p>
+            เสน่ห์ของสีน้ำคือความเป็นธรรมชาติ บางครั้งสีไหลเข้าหากัน เกิดรอยซึม รอยฟุ้ง หรือขอบสีที่คาดเดาไม่ได้ทั้งหมด
+            สิ่งนี้ทำให้งานสีน้ำมีชีวิต และไม่จำเป็นต้องเรียบร้อยเหมือนภาพที่ระบายสีแบบทึบทุกส่วน
+          </p>
+          <p>
+            ในคาบแรกควรเน้นให้นักเรียนเข้าใจว่า “ความผิดพลาด” ในสีน้ำอาจกลายเป็นส่วนหนึ่งของผลงานได้
+            เช่น สีซึมเกินไปอาจกลายเป็นเมฆ หมอก เงาน้ำ หรือพื้นหลังที่น่าสนใจ
+          </p>
+          <div class="image-examples">
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Aquarela.JPG" alt="ตัวอย่างรอยฟุ้งของสีน้ำ">
+              <figcaption>ตัวอย่างรอยฟุ้งและการกระจายตัวของสีแบบอิสระ <a href="https://commons.wikimedia.org/wiki/File:Aquarela.JPG" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blumenmythos%2C_1918_-_Paul_Klee.jpg" alt="ตัวอย่างงานสีน้ำที่ใช้บรรยากาศและสี">
+              <figcaption>งานสีน้ำที่ใช้สีสร้างอารมณ์และบรรยากาศของภาพ <a href="https://commons.wikimedia.org/wiki/File:Blumenmythos,_1918_-_Paul_Klee.jpg" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <h3>3. เปรียบเทียบสีน้ำกับสีอื่น</h3>
+          <div class="compare">
+            <div class="paint-sample sample-water">สีน้ำ<br>โปร่งใส เบา ใช้น้ำควบคุม</div>
+            <div class="paint-sample sample-poster">สีโปสเตอร์<br>ทึบ สด ปิดพื้นได้ดี</div>
+            <div class="paint-sample sample-acrylic">สีอะคริลิก<br>ทึบ แห้งไว ติดแน่น</div>
+          </div>
+          <p style="margin-top:16px">
+            นักเรียนควรเข้าใจว่าสีน้ำไม่ใช่สีที่เหมาะกับการถมทึบอย่างเดียว จุดเด่นคือการไล่น้ำหนัก สีอ่อน-เข้ม
+            ความโปร่ง และการปล่อยพื้นที่ขาวของกระดาษให้ช่วยสร้างแสง
+          </p>
+          <div class="example-table" aria-label="ตารางเปรียบเทียบสี">
+            <div><strong>สีน้ำ</strong><span>เหมาะกับภาพที่ต้องการความเบา ฟุ้ง โปร่ง เช่น ท้องฟ้า ดอกไม้ วิวธรรมชาติ</span></div>
+            <div><strong>สีโปสเตอร์</strong><span>เหมาะกับงานที่ต้องการสีสด ทึบ เห็นชัด เช่น ป้าย โปสเตอร์ งานตกแต่ง</span></div>
+            <div><strong>สีอะคริลิก</strong><span>เหมาะกับงานที่ต้องการความติดทน แห้งไว ระบายบนผ้า ไม้ หรือผ้าใบได้</span></div>
+          </div>
+          <p>
+            ตัวอย่างเปรียบเทียบง่าย ๆ: ถ้าวาดเมฆด้วยสีน้ำ เมฆอาจดูนุ่มและฟุ้งเพราะสีซึมกับน้ำ
+            แต่ถ้าวาดด้วยสีโปสเตอร์ เมฆจะดูทึบและขอบชัดกว่า ทั้งสองแบบไม่ผิด แต่ให้ความรู้สึกต่างกัน
+          </p>
+          <div class="image-examples">
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Watercolors_with_a_brush.jpg" alt="ตัวอย่างสีน้ำและพู่กัน">
+              <figcaption>สีน้ำให้ความรู้สึกเบา โปร่ง และควบคุมด้วยน้ำ <a href="https://commons.wikimedia.org/wiki/File:Watercolors_with_a_brush.jpg" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/John_Singer_Sargent_-_Carrara%2C_Wet_Quarries_-_Inl%C3%A5n_JSS_514-02_-_Nationalmuseum.jpg" alt="ตัวอย่างงานสีน้ำของ John Singer Sargent">
+              <figcaption>ภาพสีน้ำที่เห็นการเว้นแสงและการปาดสีแบบหลวม <a href="https://commons.wikimedia.org/wiki/File:John_Singer_Sargent_-_Carrara,_Wet_Quarries_-_Inl%C3%A5n_JSS_514-02_-_Nationalmuseum.jpg" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <h3>4. รู้จักอุปกรณ์พื้นฐาน</h3>
+          <p>
+            อุปกรณ์พื้นฐานประกอบด้วย สีน้ำ พู่กันหลายขนาด กระดาษสำหรับสีน้ำ จานสี แก้วน้ำหรือภาชนะใส่น้ำ
+            กระดาษทิชชูหรือผ้า และดินสอสำหรับร่างภาพเบา ๆ
+          </p>
+          <p>
+            ควรย้ำว่านักเรียนยังไม่ต้องซื้อของราคาแพง สิ่งสำคัญคือใช้อุปกรณ์ให้เหมาะ เช่น กระดาษควรหนาพอ
+            เพราะกระดาษบางจะย่นง่ายเมื่อโดนน้ำ ส่วนพู่กันควรอุ้มน้ำได้ดีและปลายพู่กันควบคุมเส้นได้
+          </p>
+          <div class="equipment-list">
+            <div><strong>สีน้ำ</strong><span>แหล่งของสี ใช้ผสมน้ำเพื่อสร้างค่าน้ำหนักอ่อน-เข้ม</span></div>
+            <div><strong>พู่กัน</strong><span>ใช้ควบคุมทิศทาง ขนาดเส้น และปริมาณน้ำบนกระดาษ</span></div>
+            <div><strong>กระดาษ</strong><span>รับน้ำและสี ควรหนาพอเพื่อไม่ให้ย่นหรือขาดง่าย</span></div>
+            <div><strong>จานสี</strong><span>พื้นที่สำหรับผสมสีและปรับความเข้มก่อนลงบนงานจริง</span></div>
+            <div><strong>น้ำ</strong><span>ใช้ละลายสี ล้างพู่กัน และควบคุมความโปร่งใสของสี</span></div>
+            <div><strong>ทิชชูหรือผ้า</strong><span>ซับน้ำส่วนเกิน แก้สีที่เปียก และทำพื้นผิวบางแบบได้</span></div>
+          </div>
+          <p>
+            ในคาบนี้ยังไม่ต้องใช้อุปกรณ์จริง ให้นักเรียนจดชื่ออุปกรณ์และหน้าที่ไว้ก่อน
+            เพื่อคาบต่อไปจะรู้ว่าควรเตรียมอะไรและใช้อย่างไรให้ไม่เลอะหรือทำกระดาษเสียเร็ว
+          </p>
+          <div class="image-examples">
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Brush_and_watercolours.jpg" alt="จานสีน้ำและพู่กัน">
+              <figcaption>ตัวอย่างจานสีน้ำและพู่กัน อุปกรณ์หลักของการฝึก <a href="https://commons.wikimedia.org/wiki/File:Brush_and_watercolours.jpg" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+            <figure>
+              <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Papier_aquarelle_100%25_coton%2C_grain_fin.png" alt="ตัวอย่างกระดาษสีน้ำ">
+              <figcaption>ตัวอย่างผิวกระดาษสีน้ำ กระดาษมีผลต่อการซึมและพื้นผิวของสี <a href="https://commons.wikimedia.org/wiki/File:Papier_aquarelle_100%25_coton,_grain_fin.png" target="_blank" rel="noreferrer">ที่มา</a></figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+
+      <p class="note reveal" style="margin-top:18px">
+        ข้อควรเน้นในคาบแรก: วันนี้ยังไม่ต้องมีสีจริง จุดประสงค์คือรู้จักธรรมชาติของสีน้ำและเตรียมความพร้อม
+        นักเรียนสามารถจดจากคำบรรยาย ดูตัวอย่างภาพ และหาข้อมูลเพิ่มเติมเพื่อใช้ในคาบปฏิบัติครั้งถัดไป
+      </p>
+    </section>
+
+    <section class="band soft" id="spot">
+      <div class="section-head reveal">
+        <p class="kicker">Look & Think</p>
+        <h2>กิจกรรมจับผิดภาพสีน้ำ</h2>
+        <p>
+          ให้นักเรียนดูภาพทั้ง 6 ภาพ แล้วลองทายว่าภาพไหนเป็น “สีน้ำจริง”
+          โดยสังเกตจากความโปร่งใส รอยฟุ้ง การเว้นแสง และความทึบของเนื้อสี
+          จากนั้นค่อยกดเฉลยเพื่อตรวจคำตอบ
+        </p>
+      </div>
+
+      <div class="spot-grid">
+        <article class="spot-card reveal" data-answer="สีน้ำ">
+          <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Winslow_Homer,_On_the_Trail,_1889,_NGA_55587.jpg" alt="ภาพผลงาน On the Trail โดย Winslow Homer">
+          <div class="spot-body">
+            <h3>ภาพที่ 1</h3>
+            <p>ลองสังเกตพื้นหลัง น้ำหนักสี และพื้นที่สว่างของกระดาษ</p>
+            <div class="spot-actions">
+              <button class="choice-btn" type="button" data-choice="สีน้ำ">สีน้ำ</button>
+              <button class="choice-btn" type="button" data-choice="สีอะคริลิก">สีอะคริลิก</button>
+              <button class="choice-btn" type="button" data-choice="สีน้ำมัน">สีน้ำมัน</button>
+            </div>
+            <div class="spot-result">เฉลย: สีน้ำ จุดสังเกตคือสีค่อนข้างโปร่ง มีการเว้นแสง และน้ำหนักบางจุดเบา</div>
+            <a class="spot-source" href="https://commons.wikimedia.org/wiki/File:Winslow_Homer,_On_the_Trail,_1889,_NGA_55587.jpg" target="_blank" rel="noreferrer">ที่มาภาพ</a>
+          </div>
+        </article>
+
+        <article class="spot-card reveal" data-answer="สีน้ำ">
+          <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/William_Henry_Hunt,_The_Village_Pet,_Exhibited_1852.jpg" alt="ภาพ The Village Pet โดย William Henry Hunt">
+          <div class="spot-body">
+            <h3>ภาพที่ 2</h3>
+            <p>ลองดูความนุ่มของสีและรายละเอียดที่ไม่ทึบจนปิดพื้นกระดาษทั้งหมด</p>
+            <div class="spot-actions">
+              <button class="choice-btn" type="button" data-choice="สีน้ำ">สีน้ำ</button>
+              <button class="choice-btn" type="button" data-choice="สีอะคริลิก">สีอะคริลิก</button>
+              <button class="choice-btn" type="button" data-choice="สีน้ำมัน">สีน้ำมัน</button>
+            </div>
+            <div class="spot-result">เฉลย: สีน้ำ ภาพมีความโปร่งและการไล่น้ำหนักที่นุ่มกว่าสีทึบ</div>
+            <a class="spot-source" href="https://commons.wikimedia.org/wiki/File:William_Henry_Hunt,_The_Village_Pet,_Exhibited_1852.jpg" target="_blank" rel="noreferrer">ที่มาภาพ</a>
+          </div>
+        </article>
+
+        <article class="spot-card reveal" data-answer="สีน้ำ">
+          <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Frank_Reed_Whiteside_-_dda43998ed.jpg" alt="ภาพสีน้ำบนกระดาษโดย Frank Reed Whiteside">
+          <div class="spot-body">
+            <h3>ภาพที่ 3</h3>
+            <p>มองหารอยสีที่เบา โปร่ง และซึมกับพื้นผิวกระดาษ</p>
+            <div class="spot-actions">
+              <button class="choice-btn" type="button" data-choice="สีน้ำ">สีน้ำ</button>
+              <button class="choice-btn" type="button" data-choice="สีอะคริลิก">สีอะคริลิก</button>
+              <button class="choice-btn" type="button" data-choice="สีน้ำมัน">สีน้ำมัน</button>
+            </div>
+            <div class="spot-result">เฉลย: สีน้ำ สังเกตความเบาของสีและลักษณะสีที่ไม่ปิดผิวกระดาษจนทึบ</div>
+            <a class="spot-source" href="https://commons.wikimedia.org/wiki/File:Frank_Reed_Whiteside_-_dda43998ed.jpg" target="_blank" rel="noreferrer">ที่มาภาพ</a>
+          </div>
+        </article>
+
+        <article class="spot-card reveal" data-answer="สีอะคริลิก">
+          <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Acryl_Stilleven_met_blauwe_kan_Julien_Grandgagnage.jpg" alt="ภาพหุ่นนิ่งสีอะคริลิกโดย Julien Grandgagnage">
+          <div class="spot-body">
+            <h3>ภาพที่ 4</h3>
+            <p>ลองดูความทึบของเนื้อสีและพื้นผิวที่ปิดทับกันได้ชัด</p>
+            <div class="spot-actions">
+              <button class="choice-btn" type="button" data-choice="สีน้ำ">สีน้ำ</button>
+              <button class="choice-btn" type="button" data-choice="สีอะคริลิก">สีอะคริลิก</button>
+              <button class="choice-btn" type="button" data-choice="สีน้ำมัน">สีน้ำมัน</button>
+            </div>
+            <div class="spot-result">เฉลย: สีอะคริลิก สีมีความทึบและปิดพื้นได้มากกว่าสีน้ำ</div>
+            <a class="spot-source" href="https://commons.wikimedia.org/wiki/File:Acryl_Stilleven_met_blauwe_kan_Julien_Grandgagnage.jpg" target="_blank" rel="noreferrer">ที่มาภาพ</a>
+          </div>
+        </article>
+
+        <article class="spot-card reveal" data-answer="สีน้ำมัน">
+          <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Still_Life_by_Vincent_van_Gogh.jpg" alt="ภาพ Still Life โดย Vincent van Gogh">
+          <div class="spot-body">
+            <h3>ภาพที่ 5</h3>
+            <p>สังเกตรอยฝีแปรงและเนื้อสีที่ดูหนาแน่นกว่าสีน้ำ</p>
+            <div class="spot-actions">
+              <button class="choice-btn" type="button" data-choice="สีน้ำ">สีน้ำ</button>
+              <button class="choice-btn" type="button" data-choice="สีอะคริลิก">สีอะคริลิก</button>
+              <button class="choice-btn" type="button" data-choice="สีน้ำมัน">สีน้ำมัน</button>
+            </div>
+            <div class="spot-result">เฉลย: สีน้ำมัน เนื้อสีดูทึบ หนา และเห็นรอยฝีแปรงชัดกว่าสีน้ำ</div>
+            <a class="spot-source" href="https://commons.wikimedia.org/wiki/File:Still_Life_by_Vincent_van_Gogh.jpg" target="_blank" rel="noreferrer">ที่มาภาพ</a>
+          </div>
+        </article>
+
+        <article class="spot-card reveal" data-answer="สีน้ำมัน">
+          <img data-zoomable loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Jan_van_Huysum,_Still_Life_with_Flowers_and_Fruit,_c._1715,_NGA_96655.jpg" alt="ภาพ Still Life with Flowers and Fruit โดย Jan van Huysum">
+          <div class="spot-body">
+            <h3>ภาพที่ 6</h3>
+            <p>ดูรายละเอียด ความแน่นของสี และการปั้นแสงเงาแบบงานจิตรกรรมทึบ</p>
+            <div class="spot-actions">
+              <button class="choice-btn" type="button" data-choice="สีน้ำ">สีน้ำ</button>
+              <button class="choice-btn" type="button" data-choice="สีอะคริลิก">สีอะคริลิก</button>
+              <button class="choice-btn" type="button" data-choice="สีน้ำมัน">สีน้ำมัน</button>
+            </div>
+            <div class="spot-result">เฉลย: สีน้ำมัน ภาพมีรายละเอียดแน่น สีทึบ และแสงเงาลึก ไม่ใช่ลักษณะโปร่งแบบสีน้ำ</div>
+            <a class="spot-source" href="https://commons.wikimedia.org/wiki/File:Jan_van_Huysum,_Still_Life_with_Flowers_and_Fruit,_c._1715,_NGA_96655.jpg" target="_blank" rel="noreferrer">ที่มาภาพ</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="note reveal" style="margin-top:18px">
+        คำถามอภิปรายหลังเล่น: นักเรียนใช้ “ร่องรอย” อะไรในการตัดสินว่าเป็นสีน้ำ เช่น ความโปร่งใส รอยฟุ้ง
+        การเว้นกระดาษขาว ความทึบของสี หรือรอยฝีแปรง
+      </p>
+    </section>
+
+    <section class="band soft" id="activity">
+      <div class="section-head reveal">
+        <p class="kicker">Notebook Activity</p>
+        <h2>กิจกรรมท้ายคาบ: ค้นข้อมูลสีน้ำเบื้องต้นลงสมุด</h2>
+        <p>
+          ให้นักเรียนใช้สมุดจดคำตอบจากการฟังครู อภิปรายกับเพื่อน หรือค้นข้อมูลเพิ่มเติมจากแหล่งที่เชื่อถือได้
+          ยังไม่ต้องใช้อุปกรณ์สีจริง
+        </p>
+      </div>
+
+      <div class="question-panel reveal">
+        <h3>คำถามสำหรับจดลงสมุด</h3>
+        <ol class="questions">
+          <li>สีน้ำคืออะไร อธิบายด้วยคำพูดของตนเองอย่างน้อย 3 บรรทัด</li>
+          <li>ลักษณะเด่นของสีน้ำมีอะไรบ้าง เขียนมาอย่างน้อย 4 ข้อ</li>
+          <li>สีน้ำแตกต่างจากสีโปสเตอร์หรือสีอะคริลิกอย่างไร ยกตัวอย่าง 2 ความแตกต่าง</li>
+          <li>อุปกรณ์พื้นฐานในการเขียนภาพสีน้ำมีอะไรบ้าง และแต่ละอย่างมีหน้าที่อะไร</li>
+          <li>ทำไมกระดาษจึงสำคัญกับงานสีน้ำ กระดาษบางกับกระดาษหนามีผลต่างกันอย่างไร</li>
+          <li>คำว่า “สีโปร่งใส” ในงานสีน้ำหมายถึงอะไร</li>
+          <li>ค้นหาภาพงานสีน้ำ 1 ภาพที่ชอบ แล้วจดว่า ภาพนั้นใช้สีอะไรเด่น และทำให้รู้สึกอย่างไร</li>
+          <li>ถ้าคาบหน้าต้องเริ่มฝึกสีน้ำ นักเรียนคิดว่าตนเองต้องเตรียมอะไร และต้องระวังเรื่องใดบ้าง</li>
+        </ol>
+        <p class="note" style="margin-top:18px">
+          เกณฑ์ส่งท้ายคาบ: จดครบอย่างน้อย 6 ข้อ ลายมืออ่านได้ มีการตอบด้วยความเข้าใจของตนเอง
+          และมีภาพตัวอย่างหรือชื่อภาพงานสีน้ำที่นักเรียนสนใจ 1 รายการ
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>บทเรียนคาบแรก: รู้จักวิชาสีน้ำ สำหรับนักเรียนชั้น ม.3 | ใช้บรรยายก่อนเริ่มคาบปฏิบัติจริง</p>
+  </footer>
+
+  <dialog class="image-zoom" id="imageZoom" aria-label="ภาพขยาย">
+    <button class="zoom-close" id="closeImageZoom" type="button" aria-label="ปิดภาพขยาย">×</button>
+    <img id="zoomImage" src="" alt="ภาพขยาย">
+  </dialog>
+
+  <script>
+    const imageZoom = document.querySelector("#imageZoom");
+    const zoomImage = document.querySelector("#zoomImage");
+    const closeImageZoom = document.querySelector("#closeImageZoom");
+
+    document.querySelectorAll("img[data-zoomable]").forEach((image) => {
+      image.addEventListener("click", () => {
+        zoomImage.src = image.src;
+        zoomImage.alt = image.alt || "ภาพขยาย";
+        imageZoom.showModal();
+        closeImageZoom.focus();
+      });
+    });
+
+    function closeZoom() {
+      if (imageZoom.open) {
+        imageZoom.close();
+      }
+      zoomImage.src = "";
+    }
+
+    closeImageZoom.addEventListener("click", closeZoom);
+    imageZoom.addEventListener("click", (event) => {
+      if (event.target === imageZoom) {
+        closeZoom();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && imageZoom.open) {
+        closeZoom();
+      }
+    });
+
+    document.querySelectorAll(".spot-card").forEach((card) => {
+      const answer = card.dataset.answer;
+      const result = card.querySelector(".spot-result");
+
+      card.querySelectorAll(".choice-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          card.querySelectorAll(".choice-btn").forEach((item) => {
+            item.classList.remove("correct", "wrong");
+          });
+
+          if (button.dataset.choice === answer) {
+            button.classList.add("correct");
+          } else {
+            button.classList.add("wrong");
+            const correctButton = card.querySelector(`[data-choice="${answer}"]`);
+            if (correctButton) correctButton.classList.add("correct");
+          }
+
+          result.classList.add("show");
+        });
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
